@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/forecastFragment">
+
+    <fragment
+        android:id="@+id/forecastFragment"
+        android:name="com.goobar.io.premiseweather.forecast.ForecastFragment"
+        android:label="forecast_fragment"
+        tools:layout="@layout/forecast_fragment" >
+        <action
+            android:id="@+id/action_forecastFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.goobar.io.premiseweather.location.LocationFragment"
+        android:label="location_fragment"
+        tools:layout="@layout/location_fragment" >
+        <action
+            android:id="@+id/action_locationFragment_to_forecastFragment"
+            app:destination="@id/forecastFragment" />
+    </fragment>
+</navigation>
