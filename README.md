@@ -6,3 +6,6 @@ Basic requirements are outlined in `requirements.md` and will tracked using GitH
 
 ## Assumptions
 Assumptions will be documented in `assumptions.md`
+
+## Architecture
+Architecture and infrastructure decisions are documented in `adr/`
