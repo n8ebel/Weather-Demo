@@ -1,7 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "koin"
 
 import com.goobar.io.buildsrc.Deps
 
@@ -35,6 +36,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation Deps.kotlin.stdlib
     implementation Deps.kotlin.coroutines.core
+
+    implementation Deps.koin.core.core
+    implementation Deps.koin.android.android
+    implementation Deps.koin.androidx.scope
+    implementation Deps.koin.androidx.viewModel
+    implementation Deps.koin.androidx.fragment
 
     implementation Deps.androidx.appcompat
     implementation Deps.androidx.core

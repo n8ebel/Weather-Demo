@@ -1,6 +1,5 @@
 package com.goobar.io.premiseweather.search
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,11 +8,13 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 
 import com.goobar.io.premiseweather.databinding.SearchFragmentBinding
+import com.goobar.io.premiseweather.location.Location
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
 
     private lateinit var viewBinding: SearchFragmentBinding
-    private lateinit var viewModel: SearchViewModel
+    private val model: SearchViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,9 +27,10 @@ class SearchFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
 
         viewBinding.searchButton.setOnClickListener {
+            model.repository.saveLocation(Location.fromString(viewBinding.editText.text.toString()))
+
             val action = SearchFragmentDirections.actionSearchFragmentToForecastFragment()
             findNavController().navigate(action)
         }

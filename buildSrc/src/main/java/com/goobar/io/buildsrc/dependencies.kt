@@ -28,6 +28,25 @@ object Deps {
   const val material = "com.google.android.material:material:1.0.0"
   const val junit4 = "junit:junit:4.12"
 
+  object koin {
+    const val version = "2.1.1"
+    const val gradlePlugin = "org.koin:koin-gradle-plugin:$version"
+
+    object core {
+      const val core = "org.koin:koin-core:$version"
+    }
+
+    object android {
+      const val android = "org.koin:koin-android:$version"
+    }
+
+    object androidx {
+      const val scope = "org.koin:koin-androidx-scope:$version"
+      const val viewModel = "org.koin:koin-androidx-viewmodel:$version"
+      const val fragment = "org.koin:koin-androidx-fragment:$version"
+    }
+  }
+
   object androidx {
     const val annotation = "androidx.annotation:annotation:1.1.0"
     const val appcompat = "androidx.appcompat:appcompat:1.0.2"
