@@ -103,7 +103,7 @@ object Deps {
   }
 
   object retrofit {
-    private const val version = "2.5.0"
+    private const val version = "2.7.2"
     const val client = "com.squareup.retrofit2:retrofit:$version"
     const val moshi = "com.squareup.retrofit2:converter-moshi:$version"
   }

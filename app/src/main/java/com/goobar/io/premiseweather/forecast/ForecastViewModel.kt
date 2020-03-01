@@ -8,15 +8,26 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ForecastViewModel(val repository: LocationRepository) : ViewModel() {
+class ForecastViewModel(
+    private val locationRepository: LocationRepository,
+    private val weatherRepository: WeatherRepository
+) : ViewModel() {
 
     private val _viewState = ConflatedBroadcastChannel<String>()
     val viewState = _viewState.asFlow()
 
     init {
         viewModelScope.launch {
-            repository.currentLocation.collect { location ->
+            locationRepository.currentLocation.collect { location ->
                 _viewState.offer(location.zipcode)
+
+                weatherRepository.loadForecast(location.zipcode)
+            }
+        }
+
+        viewModelScope.launch {
+            weatherRepository.currentForecast.collect {
+                _viewState.offer("loaded the forecast")
             }
         }
     }

@@ -30,12 +30,20 @@ android {
     viewBinding {
         enabled = true
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation Deps.kotlin.stdlib
     implementation Deps.kotlin.coroutines.core
+
+    implementation Deps.retrofit.client
+    implementation Deps.retrofit.moshi
 
     implementation Deps.koin.core.core
     implementation Deps.koin.android.android
