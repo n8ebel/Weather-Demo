@@ -24,9 +24,14 @@ object BuildConfig {
 
 object Deps {
 
-  const val groupie = "com.xwray:groupie:2.3.0"
   const val material = "com.google.android.material:material:1.0.0"
   const val junit4 = "junit:junit:4.12"
+
+  object groupie {
+    const val version = "2.3.0"
+    const val groupie = "com.xwray:groupie:$version"
+    const val android = "com.xwray:groupie-kotlin-android-extensions:$version"
+  }
 
   object koin {
     const val version = "2.1.1"

@@ -8,8 +8,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.goobar.io.premiseweather.R
 import com.goobar.io.premiseweather.databinding.ForecastFragmentBinding
+import com.goobar.io.premiseweather.forecast.ui.CurrentForecastItem
+import com.goobar.io.premiseweather.forecast.ui.ForecastItem
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Item
+import com.xwray.groupie.ViewHolder
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
@@ -22,6 +28,8 @@ class ForecastFragment : Fragment() {
     private val model: ForecastViewModel by viewModel()
     private lateinit var viewBinding: ForecastFragmentBinding
 
+    private val groupAdapter = GroupAdapter<ViewHolder>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,16 +39,24 @@ class ForecastFragment : Fragment() {
         return viewBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launchWhenStarted {
+            model.viewState.collect{ onViewState(it)}
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        viewBinding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = groupAdapter
+        }
 
         viewBinding.locationButton.setOnClickListener {
             val action = ForecastFragmentDirections.actionForecastFragmentToSearchFragment()
             findNavController().navigate(action)
-        }
-
-        lifecycleScope.launchWhenStarted {
-            model.viewState.collect{ onViewState(it)}
         }
     }
 
@@ -59,6 +75,15 @@ class ForecastFragment : Fragment() {
 
         if (!viewState.isLoading && viewState.forecast == null && viewState.error == null) {
             viewBinding.text1.text = getString(R.string.forecast_empty)
+        }
+
+        viewState.forecast?.let { forecast ->
+            val items = mutableListOf<Item<*>>()
+            items.add(CurrentForecastItem(forecast.data[0]))
+            for (i in 1 until forecast.data.size) {
+                items.add(ForecastItem(forecast.data[i]))
+            }
+            groupAdapter.updateAsync(items)
         }
     }
 }

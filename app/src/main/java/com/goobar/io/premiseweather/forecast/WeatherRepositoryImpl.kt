@@ -3,7 +3,6 @@ package com.goobar.io.premiseweather.forecast
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 
@@ -20,7 +19,6 @@ class WeatherRepositoryImpl(private val weatherService: WeatherService) : Weathe
     override suspend fun loadForecast(zipcode: String) {
         _currentForecast.offer(WeatherResult.Loading)
         try {
-            delay(25000)
             val forecast = weatherService
                 .get16DayForecast("18d17c88b3c14f90bd34f2175afb73be", zipcode)
             _currentForecast.offer(WeatherResult.Success(forecast))
