@@ -38,7 +38,10 @@ class ForecastViewModel(
                     is WeatherResult.Success -> {
                         ForecastViewState(isLoading = false, forecast = it.forecast, error = null)
                     }
-                    is WeatherResult.Error -> currentViewState.copy(isLoading = false, error = it.error)
+                    is WeatherResult.Error -> currentViewState.copy(
+                        isLoading = false,
+                        error = it.error
+                    )
                 }
                 _viewState.offer(viewState)
             }

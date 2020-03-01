@@ -28,11 +28,12 @@ data class CurrentForecastItem(val forecastData: ForecastData) : Item<CurrentFor
         viewHolder.title.text = "Today"
         viewHolder.description.text = forecastData.weather.description
         viewHolder.temp.text = forecastData.temp.toFarenheit().toString()
-        viewHolder.details.text = "Chance Prec: ${forecastData.pop}  Hum: ${forecastData.rh}  Pressure: ${forecastData.pres}"
+        viewHolder.details.text =
+            "Chance Prec: ${forecastData.pop}  Hum: ${forecastData.rh}" +
+                    "  Pressure: ${forecastData.pres}"
     }
 
     override fun getId(): Long {
         return forecastData.ts
     }
-
 }

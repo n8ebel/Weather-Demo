@@ -43,7 +43,7 @@ class ForecastFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
-            model.viewState.collect{ onViewState(it)}
+            model.viewState.collect { onViewState(it) }
         }
     }
 

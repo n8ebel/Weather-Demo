@@ -28,7 +28,9 @@ data class ForecastItem(val forecastData: ForecastData) : Item<ForecastViewHolde
         viewHolder.title.text = forecastData.valid_date
         viewHolder.description.text = forecastData.weather.description
         viewHolder.temp.text = forecastData.temp.toFarenheit().toString()
-        viewHolder.details.text = "Chance Prec: ${forecastData.pop}  Hum: ${forecastData.rh}  Pressure: ${forecastData.pres}"
+        viewHolder.details.text =
+            "Chance Prec: ${forecastData.pop}  Hum: ${forecastData.rh}" +
+                    "  Pressure: ${forecastData.pres}"
     }
 
     override fun getId(): Long {
