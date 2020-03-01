@@ -12,7 +12,7 @@ private val KEY_LOCATION = "key_location"
 
 @ExperimentalCoroutinesApi
 @FlowPreview
-class PrefsLocationRepository(val prefs: SharedPreferences): LocationRepository {
+class PrefsLocationRepository(val prefs: SharedPreferences) : LocationRepository {
 
     private val _currentLocation = ConflatedBroadcastChannel<Location>()
 
