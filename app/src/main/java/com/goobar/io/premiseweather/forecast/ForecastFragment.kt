@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.goobar.io.premiseweather.R
 import com.goobar.io.premiseweather.databinding.ForecastFragmentBinding
@@ -50,7 +51,10 @@ class ForecastFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewBinding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            val manager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(requireContext(), manager.orientation))
+            layoutManager = manager
             adapter = groupAdapter
         }
 

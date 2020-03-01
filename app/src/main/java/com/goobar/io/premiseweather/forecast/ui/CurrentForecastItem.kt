@@ -3,12 +3,16 @@ package com.goobar.io.premiseweather.forecast.ui
 import android.view.View
 import android.widget.TextView
 import com.goobar.io.premiseweather.R
-import com.goobar.io.premiseweather.forecast.ForecastData
+import com.goobar.io.premiseweather.data.ForecastData
+import com.goobar.io.premiseweather.toFarenheit
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 
 class CurrentForecastViewHolder(view: View) : ViewHolder(view) {
-    val title = view.findViewById<TextView>(R.id.text1)
+    val title = view.findViewById<TextView>(R.id.date)
+    val temp = view.findViewById<TextView>(R.id.temp)
+    val description = view.findViewById<TextView>(R.id.description)
+    val details = view.findViewById<TextView>(R.id.details)
 }
 
 data class CurrentForecastItem(val forecastData: ForecastData) : Item<CurrentForecastViewHolder>() {
@@ -21,7 +25,10 @@ data class CurrentForecastItem(val forecastData: ForecastData) : Item<CurrentFor
     }
 
     override fun bind(viewHolder: CurrentForecastViewHolder, position: Int) {
-        viewHolder.title.text = forecastData.valid_date
+        viewHolder.title.text = "Today"
+        viewHolder.description.text = forecastData.weather.description
+        viewHolder.temp.text = forecastData.temp.toFarenheit().toString()
+        viewHolder.details.text = "Chance Prec: ${forecastData.pop}  Hum: ${forecastData.rh}  Pressure: ${forecastData.pres}"
     }
 
     override fun getId(): Long {

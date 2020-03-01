@@ -1,7 +1,7 @@
 package com.goobar.io.premiseweather
 
 import android.content.Context
-import com.goobar.io.premiseweather.forecast.ForecastData
+import com.goobar.io.premiseweather.data.ForecastData
 import com.goobar.io.premiseweather.forecast.WeatherRepository
 import com.goobar.io.premiseweather.forecast.WeatherRepositoryImpl
 import com.goobar.io.premiseweather.forecast.WeatherService

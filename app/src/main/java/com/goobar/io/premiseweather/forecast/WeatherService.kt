@@ -1,5 +1,6 @@
 package com.goobar.io.premiseweather.forecast
 
+import com.goobar.io.premiseweather.data.Forecast
 import retrofit2.http.GET
 import retrofit2.http.Query
 
