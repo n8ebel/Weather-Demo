@@ -58,15 +58,30 @@ class ForecastFragment : Fragment() {
             adapter = groupAdapter
         }
 
+        viewBinding.refresh.setOnRefreshListener {
+            model.onAction(ForecastViewAction.Refresh)
+        }
+
         viewBinding.locationButton.setOnClickListener {
             val action = ForecastFragmentDirections.actionForecastFragmentToSearchFragment()
             findNavController().navigate(action)
         }
     }
 
+    private fun updateProgressIndicator(isLoading: Boolean, hasData: Boolean) {
+        if (hasData) {
+            viewBinding.refresh.isRefreshing = isLoading
+            viewBinding.progress.isVisible = false
+        } else {
+            viewBinding.progress.isVisible = isLoading
+            viewBinding.refresh.isRefreshing = false
+        }
+    }
+
     private fun onViewState(viewState: ForecastViewState) {
 
-        viewBinding.progress.isVisible = viewState.isLoading
+        updateProgressIndicator(viewState.isLoading, viewState.forecast != null)
+
         if (viewState.isLoading) {
             viewBinding.text1.text = getString(R.string.forecast_loading)
         }

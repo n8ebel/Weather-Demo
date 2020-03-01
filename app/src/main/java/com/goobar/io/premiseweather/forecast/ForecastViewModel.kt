@@ -2,6 +2,7 @@ package com.goobar.io.premiseweather.forecast
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.goobar.io.premiseweather.exhaustive
 import com.goobar.io.premiseweather.location.LocationRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -23,11 +24,7 @@ class ForecastViewModel(
     init {
         _viewState.offer(ForecastViewState())
 
-        viewModelScope.launch {
-            locationRepository.currentLocation.collect { location ->
-                weatherRepository.loadForecast(location.zipcode)
-            }
-        }
+        loadCurrentLocation()
 
         viewModelScope.launch {
             weatherRepository.currentForecast.collect {
@@ -44,6 +41,20 @@ class ForecastViewModel(
                     )
                 }
                 _viewState.offer(viewState)
+            }
+        }
+    }
+
+    fun onAction(action: ForecastViewAction) {
+        when (action) {
+            ForecastViewAction.Refresh -> loadCurrentLocation()
+        }.exhaustive
+    }
+
+    private fun loadCurrentLocation() {
+        viewModelScope.launch {
+            locationRepository.currentLocation.collect { location ->
+                weatherRepository.loadForecast(location.zipcode)
             }
         }
     }
