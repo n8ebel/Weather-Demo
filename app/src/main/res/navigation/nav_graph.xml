@@ -12,16 +12,16 @@
         android:label="forecast_fragment"
         tools:layout="@layout/forecast_fragment" >
         <action
-            android:id="@+id/action_forecastFragment_to_locationFragment"
-            app:destination="@id/locationFragment" />
+            android:id="@+id/action_forecastFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
-        android:id="@+id/locationFragment"
-        android:name="com.goobar.io.premiseweather.location.LocationFragment"
+        android:id="@+id/searchFragment"
+        android:name="com.goobar.io.premiseweather.search.SearchFragment"
         android:label="location_fragment"
-        tools:layout="@layout/location_fragment" >
+        tools:layout="@layout/search_fragment" >
         <action
-            android:id="@+id/action_locationFragment_to_forecastFragment"
+            android:id="@+id/action_searchFragment_to_forecastFragment"
             app:destination="@id/forecastFragment" />
     </fragment>
 </navigation>

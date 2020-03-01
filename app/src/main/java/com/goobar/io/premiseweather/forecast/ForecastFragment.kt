@@ -29,7 +29,7 @@ class ForecastFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(ForecastViewModel::class.java)
 
         viewBinding.locationButton.setOnClickListener {
-            val action = ForecastFragmentDirections.actionForecastFragmentToLocationFragment()
+            val action = ForecastFragmentDirections.actionForecastFragmentToSearchFragment()
             findNavController().navigate(action)
         }
     }
