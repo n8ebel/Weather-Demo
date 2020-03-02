@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.goobar.io.premiseweather.search.SearchFragment"
+        android:name="com.goobar.io.premiseweather.search.ui.SearchFragment"
         android:label="Choose Location"
         tools:layout="@layout/search_fragment" >
         <action

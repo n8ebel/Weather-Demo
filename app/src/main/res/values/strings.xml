@@ -10,4 +10,6 @@
   <string name="forecast_error_loading">Something went wrong…Please try again.</string>
   <string name="forecast_empty">Choose a location to display forecast data</string>
   <string name="forecast_loading">Your forecast data is loading…</string>
+
+  <string name="search_invalid_input">Invalid zipcode</string>
 </resources>
