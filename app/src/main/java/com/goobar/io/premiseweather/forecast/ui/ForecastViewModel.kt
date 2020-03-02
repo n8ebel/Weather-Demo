@@ -1,8 +1,10 @@
-package com.goobar.io.premiseweather.forecast
+package com.goobar.io.premiseweather.forecast.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.goobar.io.premiseweather.exhaustive
+import com.goobar.io.premiseweather.forecast.weather.WeatherRepository
+import com.goobar.io.premiseweather.forecast.weather.WeatherResult
 import com.goobar.io.premiseweather.location.LocationRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -22,7 +24,11 @@ class ForecastViewModel(
     val viewState = _viewState.asFlow()
 
     init {
-        _viewState.offer(ForecastViewState(isLoading = false))
+        _viewState.offer(
+            ForecastViewState(
+                isLoading = false
+            )
+        )
 
         loadCurrentLocation()
 
@@ -33,7 +39,11 @@ class ForecastViewModel(
                 val viewState = when (it) {
                     WeatherResult.Loading -> currentViewState.copy(isLoading = true)
                     is WeatherResult.Success -> {
-                        ForecastViewState(isLoading = false, forecast = it.forecast, error = null)
+                        ForecastViewState(
+                            isLoading = false,
+                            forecast = it.forecast,
+                            error = null
+                        )
                     }
                     is WeatherResult.Error -> currentViewState.copy(
                         isLoading = false,

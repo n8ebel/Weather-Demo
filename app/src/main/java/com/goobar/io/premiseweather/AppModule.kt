@@ -2,9 +2,9 @@ package com.goobar.io.premiseweather
 
 import android.content.Context
 import com.goobar.io.premiseweather.data.ForecastData
-import com.goobar.io.premiseweather.forecast.WeatherRepository
-import com.goobar.io.premiseweather.forecast.WeatherRepositoryImpl
-import com.goobar.io.premiseweather.forecast.WeatherService
+import com.goobar.io.premiseweather.forecast.weather.WeatherRepository
+import com.goobar.io.premiseweather.forecast.weather.WeatherRepositoryImpl
+import com.goobar.io.premiseweather.forecast.weather.WeatherService
 import com.goobar.io.premiseweather.location.LocationRepository
 import com.goobar.io.premiseweather.location.PrefsLocationRepository
 import com.squareup.moshi.Moshi
