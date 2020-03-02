@@ -1,7 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "koin"
 
 import com.goobar.io.buildsrc.Deps
 
@@ -29,11 +30,29 @@ android {
     viewBinding {
         enabled = true
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation Deps.kotlin.stdlib
+    implementation Deps.kotlin.coroutines.core
+
+    implementation Deps.retrofit.client
+    implementation Deps.retrofit.moshi
+
+    implementation Deps.koin.core.core
+    implementation Deps.koin.android.android
+    implementation Deps.koin.androidx.scope
+    implementation Deps.koin.androidx.viewModel
+    implementation Deps.koin.androidx.fragment
 
     implementation Deps.androidx.appcompat
     implementation Deps.androidx.core
@@ -45,6 +64,8 @@ dependencies {
     implementation Deps.material
     implementation Deps.androidx.lifecycle.viewmodel
     implementation Deps.androidx.lifecycle.extensions
+
+    implementation Deps.groupie.groupie
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
