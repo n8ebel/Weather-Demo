@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.goobar.io.premiseweather.R
 import com.goobar.io.premiseweather.databinding.ForecastFragmentBinding
-import com.goobar.io.premiseweather.forecast.ui.ForecastFragmentDirections
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder

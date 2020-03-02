@@ -42,7 +42,11 @@ class SearchFragment : Fragment() {
                         findNavController().navigate(action)
                     }
                     SearchViewEvent.ShowInvalidInput -> {
-                        Snackbar.make(requireView(), R.string.search_invalid_input, Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(
+                            requireView(),
+                            R.string.search_invalid_input,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
                     }
                 }.exhaustive
             }
