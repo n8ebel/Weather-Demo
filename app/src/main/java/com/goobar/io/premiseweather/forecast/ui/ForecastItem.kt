@@ -27,10 +27,13 @@ data class ForecastItem(val forecastData: ForecastData) : Item<ForecastViewHolde
     override fun bind(viewHolder: ForecastViewHolder, position: Int) {
         viewHolder.title.text = forecastData.valid_date
         viewHolder.description.text = forecastData.weather.description
-        viewHolder.temp.text = forecastData.temp.toFarenheit().toString()
-        viewHolder.details.text =
-            "Chance Prec: ${forecastData.pop}  Hum: ${forecastData.rh}" +
-                    "  Pressure: ${forecastData.pres}"
+        viewHolder.temp.text = "${forecastData.temp.toFarenheit()} F"
+        viewHolder.details.text = viewHolder.itemView.context.getString(
+            R.string.forecast_details,
+            forecastData.pop,
+            forecastData.rh,
+            forecastData.pres
+        )
     }
 
     override fun getId(): Long {

@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/forecastFragment"
         android:name="com.goobar.io.premiseweather.forecast.ForecastFragment"
-        android:label="forecast_fragment"
+        android:label="16-Day Forecast"
         tools:layout="@layout/forecast_fragment" >
         <action
             android:id="@+id/action_forecastFragment_to_searchFragment"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.goobar.io.premiseweather.search.SearchFragment"
-        android:label="location_fragment"
+        android:label="Choose Location"
         tools:layout="@layout/search_fragment" >
         <action
             android:id="@+id/action_searchFragment_to_forecastFragment"

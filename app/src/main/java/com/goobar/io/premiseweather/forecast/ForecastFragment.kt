@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,7 @@ class ForecastFragment : Fragment() {
 
     private val model: ForecastViewModel by viewModel()
     private lateinit var viewBinding: ForecastFragmentBinding
+    private lateinit var navController: NavController
 
     private val groupAdapter = GroupAdapter<ViewHolder>()
 
@@ -50,6 +52,8 @@ class ForecastFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        navController = findNavController()
+
         viewBinding.recyclerView.apply {
             val manager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
@@ -64,7 +68,7 @@ class ForecastFragment : Fragment() {
 
         viewBinding.locationButton.setOnClickListener {
             val action = ForecastFragmentDirections.actionForecastFragmentToSearchFragment()
-            findNavController().navigate(action)
+            navController.navigate(action)
         }
     }
 
@@ -82,11 +86,11 @@ class ForecastFragment : Fragment() {
 
         updateProgressIndicator(viewState.isLoading, viewState.forecast != null)
 
+        viewBinding.text1.isVisible = viewState.forecast == null
+
         if (viewState.isLoading) {
             viewBinding.text1.text = getString(R.string.forecast_loading)
         }
-
-        activity?.title = viewState.forecast?.city_name ?: getString(R.string.app_name)
 
         viewState.error?.let {
             viewBinding.text1.text = getString(R.string.forecast_error_loading)
@@ -98,7 +102,7 @@ class ForecastFragment : Fragment() {
 
         viewState.forecast?.let { forecast ->
             val items = mutableListOf<Item<*>>()
-            items.add(CurrentForecastItem(forecast.data[0]))
+            items.add(CurrentForecastItem(viewState.forecast.city_name, forecast.data[0]))
             for (i in 1 until forecast.data.size) {
                 items.add(ForecastItem(forecast.data[i]))
             }

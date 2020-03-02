@@ -15,7 +15,8 @@ class CurrentForecastViewHolder(view: View) : ViewHolder(view) {
     val details = view.findViewById<TextView>(R.id.details)
 }
 
-data class CurrentForecastItem(val forecastData: ForecastData) : Item<CurrentForecastViewHolder>() {
+data class CurrentForecastItem(val cityName: String, val forecastData: ForecastData) :
+    Item<CurrentForecastViewHolder>() {
     override fun getLayout(): Int {
         return R.layout.item_forecast_current
     }
@@ -25,12 +26,16 @@ data class CurrentForecastItem(val forecastData: ForecastData) : Item<CurrentFor
     }
 
     override fun bind(viewHolder: CurrentForecastViewHolder, position: Int) {
-        viewHolder.title.text = "Today"
+        viewHolder.title.text =
+            viewHolder.itemView.context.getString(R.string.forecast_current_today, cityName)
         viewHolder.description.text = forecastData.weather.description
-        viewHolder.temp.text = forecastData.temp.toFarenheit().toString()
-        viewHolder.details.text =
-            "Chance Prec: ${forecastData.pop}  Hum: ${forecastData.rh}" +
-                    "  Pressure: ${forecastData.pres}"
+        viewHolder.temp.text = "${forecastData.temp.toFarenheit()} F"
+        viewHolder.details.text = viewHolder.itemView.context.getString(
+            R.string.forecast_current_details,
+            forecastData.pop,
+            forecastData.rh,
+            forecastData.pres
+        )
     }
 
     override fun getId(): Long {

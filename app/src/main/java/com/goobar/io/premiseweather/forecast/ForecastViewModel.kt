@@ -22,7 +22,7 @@ class ForecastViewModel(
     val viewState = _viewState.asFlow()
 
     init {
-        _viewState.offer(ForecastViewState())
+        _viewState.offer(ForecastViewState(isLoading = false))
 
         loadCurrentLocation()
 
@@ -54,6 +54,7 @@ class ForecastViewModel(
     private fun loadCurrentLocation() {
         viewModelScope.launch {
             locationRepository.currentLocation.collect { location ->
+
                 weatherRepository.loadForecast(location.zipcode)
             }
         }

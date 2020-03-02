@@ -1,6 +1,12 @@
 <resources>
   <string name="app_name">Premise Weather</string>
 
+  <string name="forecast_label">16-Day Forecast %1$s</string>
+
+  <string name="forecast_current_today">Today %1$s County</string>
+  <string name="forecast_current_details">Chance Prec: %1$.1f  Hum: %2$.1f Pressure: %3$.1f</string>
+  <string name="forecast_details">Chance Prec: %1$.1f\nHum: %2$.1f\nPressure: %3$.1f</string>
+
   <string name="forecast_error_loading">Something went wrong…Please try again.</string>
   <string name="forecast_empty">Choose a location to display forecast data</string>
   <string name="forecast_loading">Your forecast data is loading…</string>
