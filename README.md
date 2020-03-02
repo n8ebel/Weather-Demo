@@ -21,3 +21,8 @@ Fat marker sketches and wireframes of design iteration are included in `design/`
 * Error feedback is given for invalid zipcodes
 * Once valid search is submitted, new forecast data is loaded and displayed
 * User can pull down in forecast screen to refresh forecast data
+
+## Screenshots
+Forecast             |  Search
+:-------------------------:|:-------------------------:
+![Loaded Forecast](https://github.com/n8ebel/PremiseWeather/blob/master/screenshots/loaded_forecast.png)  |  ![Loaded Forecast](https://github.com/n8ebel/PremiseWeather/blob/master/screenshots/invalid_zipcode.png)
