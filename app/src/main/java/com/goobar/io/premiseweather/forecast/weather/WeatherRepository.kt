@@ -1,4 +1,4 @@
-package com.goobar.io.premiseweather.forecast
+package com.goobar.io.premiseweather.forecast.weather
 
 import com.goobar.io.premiseweather.data.Forecast
 import kotlinx.coroutines.flow.Flow

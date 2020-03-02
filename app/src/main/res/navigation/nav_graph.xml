@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/forecastFragment"
-        android:name="com.goobar.io.premiseweather.forecast.ForecastFragment"
+        android:name="com.goobar.io.premiseweather.forecast.ui.ForecastFragment"
         android:label="16-Day Forecast"
         tools:layout="@layout/forecast_fragment" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.goobar.io.premiseweather.search.SearchFragment"
+        android:name="com.goobar.io.premiseweather.search.ui.SearchFragment"
         android:label="Choose Location"
         tools:layout="@layout/search_fragment" >
         <action

@@ -1,4 +1,4 @@
-package com.goobar.io.premiseweather.forecast
+package com.goobar.io.premiseweather.forecast.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.goobar.io.premiseweather.R
 import com.goobar.io.premiseweather.databinding.ForecastFragmentBinding
-import com.goobar.io.premiseweather.forecast.ui.CurrentForecastItem
-import com.goobar.io.premiseweather.forecast.ui.ForecastItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -67,7 +65,8 @@ class ForecastFragment : Fragment() {
         }
 
         viewBinding.locationButton.setOnClickListener {
-            val action = ForecastFragmentDirections.actionForecastFragmentToSearchFragment()
+            val action =
+                ForecastFragmentDirections.actionForecastFragmentToSearchFragment()
             navController.navigate(action)
         }
     }

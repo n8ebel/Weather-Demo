@@ -1,4 +1,4 @@
-package com.goobar.io.premiseweather.forecast
+package com.goobar.io.premiseweather.forecast.weather
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -8,7 +8,8 @@ import kotlinx.coroutines.flow.asFlow
 
 @ExperimentalCoroutinesApi
 @FlowPreview
-class WeatherRepositoryImpl(private val weatherService: WeatherService) : WeatherRepository {
+class WeatherRepositoryImpl(private val weatherService: WeatherService) :
+    WeatherRepository {
 
     private val _currentForecast = ConflatedBroadcastChannel<WeatherResult>()
 
