@@ -1,4 +1,4 @@
-# PremiseWeather
+# Weather Demo
 Simple weather app sample
 
 ## Requirements & Tracking
